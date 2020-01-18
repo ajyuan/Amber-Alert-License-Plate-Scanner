@@ -11,6 +11,8 @@ from werkzeug.urls import url_parse
 
 
 
+
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -39,9 +41,20 @@ def index():
     # make a amber aler
     # car location 
     # color
-    amber_alerts = [{'license_plate': "XADS", "car_color": "Blue"}, {'license_plate': "AFDSFDSF", "car_color": "Red"}]
+    from .firebase import firebase
+    firebase = firebase.FirebaseApplication('https://slugalert.firebaseio.com', None)
+    amberMatchDict = firebase.get('/AmberMatch', None)
+    amberAlertDict = firebase.get('/MockAmberAlert', None)
 
-    return render_template("index.html", title='Home Page', amber_alerts=amber_alerts)
+    amberMatches = []
+    for key, value in amberMatchDict.items():
+        amberAlertId = value['AmberAlert']
+        value['AmberAlert'] = amberAlertDict[amberAlertId]
+        amberMatches.append(value)
+
+    print(amberMatches)
+
+    return render_template("index.html", title='Home Page', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
