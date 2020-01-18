@@ -16,6 +16,8 @@ from werkzeug.urls import url_parse
 def favicon(): 
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -39,6 +41,23 @@ def index():
     ]
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
+
+    # logic for getting database data
+    # make a amber aler
+    # car location 
+    # color
+    from .firebase import firebase
+    firebase = firebase.FirebaseApplication('https://slugalert.firebaseio.com', None)
+    amberMatchDict = firebase.get('/AmberMatch', None)
+    amberAlertDict = firebase.get('/MockAmberAlert', None)
+
+    amberMatches = []
+    for key, value in amberMatchDict.items():
+        amberAlertId = value['AmberAlert']
+        value['AmberAlert'] = amberAlertDict[amberAlertId]
+        amberMatches.append(value)
+
+    print(amberMatches)
 
     return render_template("index.html", title='Home Page', posts=posts)
 
