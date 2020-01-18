@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
+    <h1>Active Alerts</h1>
     {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="static/elon.jpg">
+
+        <div class="media-body">
+		    <div class="article-metadata">
+		      <a class="mr-2" href=""></a>{{ post.author.username }}</a>
+		    </div>
+		    <p class="article-content">{{ post.body }}</p>
+		  </div>
+    </article>
     {% endfor %}
 {% endblock %}

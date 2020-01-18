@@ -1,3 +1,5 @@
+import os 
+from flask import send_from_directory 
 from app import app
 from app import db
 from app.forms import EditProfileForm
@@ -10,6 +12,9 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.before_request
 def before_request():
