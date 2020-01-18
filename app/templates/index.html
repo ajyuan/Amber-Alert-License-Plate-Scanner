@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    <h1>Current Amber Alerts</h1>
+    {% for amber_alert in amber_alerts %}
+    <div><p>License Plate:{{ amber_alert.license_plate }} <b>Car Color:{{ amber_alert.car_color }}</b></p></div>
     {% endfor %}
 {% endblock %}

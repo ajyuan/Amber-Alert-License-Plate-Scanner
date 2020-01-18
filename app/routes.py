@@ -35,7 +35,13 @@ def index():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
 
-    return render_template("index.html", title='Home Page', posts=posts)
+    # logic for getting database data
+    # make a amber aler
+    # car location 
+    # color
+    amber_alerts = [{'license_plate': "XADS", "car_color": "Blue"}, {'license_plate': "AFDSFDSF", "car_color": "Red"}]
+
+    return render_template("index.html", title='Home Page', amber_alerts=amber_alerts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
