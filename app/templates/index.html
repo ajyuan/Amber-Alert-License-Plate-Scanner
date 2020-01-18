@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<<<<<<< HEAD
 
     <h1>Recent Sightings</h1>
     {% for post in posts %}
@@ -56,10 +55,5 @@
           
 		  </div>
     </article>
-=======
-    <h1>Current Amber Alerts</h1>
-    {% for amber_alert in amber_alerts %}
-    <div><p>License Plate:{{ amber_alert.license_plate }} <b>Car Color:{{ amber_alert.car_color }}</b></p></div>
->>>>>>> webpage
     {% endfor %}
 {% endblock %}
