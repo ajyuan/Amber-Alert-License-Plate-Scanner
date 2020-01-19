@@ -27,33 +27,46 @@
                   <h3>Map</h3>
                   <!--The div element for the map -->
                   
-                  <div id="{{ post.author.username }}" style="height: 400px; width: 100%;">
-                    <script>
-                    // Initialize and add the map
-                    function initMap() {
-                      // The location of Uluru
-                      var uluru = {lat: -25.344, lng: 131.036};
-                      // The map, centered at Uluru
-                      var map = new google.maps.Map(
-                          document.getElementById('{{ post.author.username }}'), {zoom: 4, center: uluru});
-                      // The marker, positioned at Uluru
-                      var marker = new google.maps.Marker({position: uluru, map: map});
-                    }
-                    </script>
-                        <!--Load the API from the specified URL
-                        * The async attribute allows the browser to render the page while the API loads
-                        * The key parameter will contain your own API key (which is not needed for this tutorial)
-                        * The callback parameter executes the initMap() function
-                        -->
-                      <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIcmKbmiuQGUcjZBzpAMz-2Jtg042QUrk&callback=initMap">
-                      </script>
-                  </div>
+                  <div id="{{ post.author.username }}" style="height: 400px; width: 100%;"></div>
                 </td>  
                </tr>
              </table>
-          
 		  </div>
     </article>
     {% endfor %}
+
+    <script>
+      var coords = [
+    {lat: 49.18589, lng: -2.19917, zoom: 17},
+    {lat: 36.997174, lng: -122.051465, zoom: 17}
+    ];
+    var names = [
+      "Test",
+      "Susan"
+    ];
+    var markers = [];
+    var maps = [];
+
+    function initMap() {
+        for(var i = 0, length = coords.length; i < length; i++)
+        {
+            var point = coords[i];
+            var latlng = new google.maps.LatLng(point.lat, point.lng);
+
+            maps[i] = new google.maps.Map(document.getElementById(names[i]), {
+                zoom: point.zoom,
+                center: latlng
+            });
+
+            markers[i] = new google.maps.Marker({
+                position: latlng,
+                map: maps[i]
+            });
+        }
+      }
+    </script>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIcmKbmiuQGUcjZBzpAMz-2Jtg042QUrk&callback=initMap">
+    </script>
 {% endblock %}

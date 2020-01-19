@@ -29,7 +29,7 @@ def index():
     user = {'username': 'Miguel'}
     posts = [
         {
-            'author': {'name': 'Elon Musk', 'Description': 'Sexy', 'Age': 69420, 'Height': 69, "Weight": 420, 'Hair': 'Brown', 'Eyes': 'Brown'},
+            'author': {'username':'Test','name': 'Elon Musk', 'Description': 'Sexy', 'Age': 69420, 'Height': 69, "Weight": 420, 'Hair': 'Brown', 'Eyes': 'Brown'},
             'body': 'Buy my Teslas!'
         },
         {
