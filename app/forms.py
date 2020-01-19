@@ -32,7 +32,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
     def validate_access_token(self, access_token):
-        if access_token != "AMBERCATCH":
+        if access_token.data != 'AMBERCATCH':
             raise ValidationError('Please input a valid access token. You can get a token from the admins.')
 
 
