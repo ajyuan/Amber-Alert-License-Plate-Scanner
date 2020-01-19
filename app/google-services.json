@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "250731331128",
+    "firebase_url": "https://slugalert.firebaseio.com",
+    "project_id": "slugalert",
+    "storage_bucket": "slugalert.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250731331128:android:4db37bd55fb8d96ee730cd",
+        "android_client_info": {
+          "package_name": "com.tuts.prakash.simpleocr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250731331128-uqudoaf2p6gf3d2qvk2nda0saaon2lld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7XmmFi4K7yxiGYuQ0FTJgU5zSZimoCis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250731331128-uqudoaf2p6gf3d2qvk2nda0saaon2lld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
