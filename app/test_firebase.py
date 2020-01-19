@@ -38,7 +38,7 @@ for i in range(10):
     amber['vehicle_information']['car_model'] = random.choice(car_brand['models'])
     amber['eye_color'] = random.choice(colors)
     amber['hair_color'] = random.choice(colors)
-    amber['age'] = random.randrange(1, 100)
+    amber['age'] = random.randrange(1, 18)
     amber['height'] = "{}'{}".format(random.randrange(4, 6), random.randrange(0, 12))
     amber['weight'] = "{} Kg".format(random.randrange(30, 100))
     firebase.post('/MockAmberAlert', amber)

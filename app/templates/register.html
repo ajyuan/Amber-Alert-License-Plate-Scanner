@@ -33,6 +33,13 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.access_token.label }}<br>
+            {{ form.access_token(size=32) }}<br>
+            {% for error in form.access_token.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
 </div>
