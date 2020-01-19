@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     MyCountDownTimer myCountDownTimer;
     int progress;
     Map <String, Object> sightingEntries = new HashMap<>();
+    boolean match = false;
+    Toast toast;
     Map <String, String> amberEntries = new HashMap<String, String>();
     HashSet <String> foundEntries = new HashSet<>();
 
@@ -109,10 +111,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
         getLastLocation();
 
         startCameraSource();
+
+        Toast.makeText(getApplicationContext(), "Scanning...", Toast.LENGTH_LONG).show();
     }
 
     @SuppressLint("MissingPermission")
@@ -152,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(0);
-        mLocationRequest.setFastestInterval(0);
-        //mLocationRequest.setNumUpdates(1);
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        // mLocationRequest.setNumUpdates(1);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(
@@ -292,17 +295,12 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 StringBuilder stringBuilder = new StringBuilder();
-                                for(int i=0;i<items.size();i++){
+                                for (int i = 0; i < items.size(); i++) {
                                     TextBlock item = items.valueAt(i);
                                     stringBuilder.append(item.getValue());
                                     stringBuilder.append("\n");
+                                    match = false;
 
-                                    // Show searching toast
-                                    Context context = getApplicationContext();
-                                    CharSequence text = "Searching...";
-                                    int duration = Toast.LENGTH_LONG;
-                                    Toast toast = Toast.makeText(context, text, duration);
-                                    toast.show();
                                 }
                                 // Search through entries for match
                                 String detectedText = stringBuilder.toString();
@@ -329,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                         // Building db entry
-                                        Map <String, Object> sightingEntry = new HashMap<>();
+                                        Map<String, Object> sightingEntry = new HashMap<>();
                                         sightingEntry.put("AmberAlert", amberEntries.get(key));
                                         sightingEntry.put("Location", locationEntry);
                                         sightingEntry.put("Time", currentDateandTime);
@@ -340,9 +338,17 @@ public class MainActivity extends AppCompatActivity {
 
                                         // Send sighting via Notivize
                                         // TODO
+                                        if (detectedText.contains(key)) {
+                                            Log.d(TAG, "FOUND: " + key);
+                                            match = true;
+                                        }
                                     }
+                                    mTextView.setText(detectedText);
                                 }
-                                mTextView.setText(detectedText);
+                                if (match) {
+                                    Toast.makeText(getApplicationContext(), "Match Found!", Toast.LENGTH_LONG).show();
+                                }
+                                match = false;
                             }
                         });
                     }
