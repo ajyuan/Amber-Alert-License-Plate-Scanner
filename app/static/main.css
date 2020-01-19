@@ -22,15 +22,20 @@ ul {
 }
 
 .bg-steel {
-  background-color: #1d51a0;
+  background-color: black;
+}
+
+.hide {
+  color: white;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  font-size: 130%;
+  color: white;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+  color: #ffbf00;
 }
 
 .site-header .navbar-nav .nav-link.active {
