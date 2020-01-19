@@ -90,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                sightingEntries = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("MockAmberAlert");
+                sightingEntries = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("AmberMatch");
+                if (sightingEntries == null) {
+                    sightingEntries = new HashMap<>();
+                }
                 Map<String, Object> map = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("MockAmberAlert");
                 if (map != null) {
                     for (Map.Entry<String, Object> entry : map.entrySet()) {
