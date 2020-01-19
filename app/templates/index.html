@@ -19,20 +19,25 @@
                 <p align="left" class="article-content">Time Sighted: {{ post.Time }} </p>
                 <p align="left" class="article-content">Name: {{ post.AmberAlert.name }} </p>
                 <p align="left" class="article-content">Age: {{ post.AmberAlert.age }} </p>
-             
+                <p align="left" class="article-content">Height: {{ post.AmberAlert.height }} </p>
+                <p align="left" class="article-content">Weight: {{ post.AmberAlert.weight }} </p>
+                <p align="left" class="article-content">Eye Color: {{ post.AmberAlert.eye_color }} </p>
+                <p align="left" class="article-content">Hair Color: {{ post.AmberAlert.hair_color }} </p>
+              
                 <p align="left" class="article-content"><b>Vehicle Information</b></p>
                 <p align="left" class="article-content">Color: {{ post.AmberAlert.vehicle_information.color }} </p>
                 <p align="left" class="article-content">License Plate: {{ post.AmberAlert.vehicle_information.license_plate }} </p>
               </td>
             
             
-                <td style="width:50%">  
+              <td style="width:50%">  
                   <h3>Map</h3>
                   <!--The div element for the map -->
                   
                   <div id="{{ post.AmberAlert.name }}" style="height: 400px; width: 100%;"></div>
-                </td>  
-              </tr>
+              </td>  
+            </tr>
+
             </table>
 		 
       </article>

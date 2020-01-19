@@ -59,7 +59,7 @@ def index():
         value['AmberAlert'] = amberAlertDict[amberAlertId]
         amberMatches.append(value)
 
-    print(amberMatches, file=sys.stderr)
+    #print(amberMatches, file=sys.stderr)
 
     return render_template("index.html", title='Home Page', posts=amberMatches)
 
