@@ -68,6 +68,10 @@ def about():
     return render_template("about.html", title='About Page')
 
 
+def sendEmail():
+    json_data = {"latitude": "1", "license_plate": "dasfdsaf", "longitude": "2", "police_email": "jonneka@gmail.com"}
+    r = requests.post(url, json=json_data)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

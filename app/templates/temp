@@ -1,0 +1,1 @@
+curl -X POST -H 'Content-Type: application/json' --data '{"latitude": "1", "license_plate": "dasfdsaf", "longitude": "2", "police_email": "jonneka@gmail.com"}' https://events-api.notivize.com/applications/afb03cdb-854d-4056-834b-b1974b7bdbf7/event_flows/365dd972-7eb4-4a7b-b8a0-a02113f5f98a/events

@@ -5,8 +5,10 @@
     "height": "1'2",
     "weight": "60 Kg",
     "eye_color": "blue",
+    "picture_url": "http://api.missingkids.org/photographs/NCMC1379794c1.jpg",
     "vehicle_information": {
         "license_plate": "XALDF",
         "color": "Blue"
     }
+    
 }
