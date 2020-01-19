@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
                                         // Send sighting to Firebase
                                         // Get sighting time
                                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss MM-dd-yyyy", Locale.getDefault());
-                                        SimpleDateFormat sdfNoSec = new SimpleDateFormat("HH:mm MM-dd-yyyy", Locale.getDefault());
+                                        SimpleDateFormat sdfNoSec = new SimpleDateFormat("HH:mm:ss MM-dd-yyyy", Locale.getDefault());
                                         String timeKey = sdf.format(new Date());
                                         String currentDateandTime = sdfNoSec.format(new Date());
 
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
                                         sightingEntry.put("AmberAlert", amberEntries.get(key));
                                         sightingEntry.put("Location", locationEntry);
                                         sightingEntry.put("Time", currentDateandTime);
-                                        sightingEntries.put(timeKey, sightingEntry);
+                                        sightingEntries.put(key, sightingEntry);
 
                                         myRef.child("AmberMatch").updateChildren(sightingEntries);
                                         Log.d(TAG, locationEntry.toString());
