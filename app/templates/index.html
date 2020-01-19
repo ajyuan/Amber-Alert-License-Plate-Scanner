@@ -17,9 +17,9 @@
               <!---<td style="width:25%"><img class="rounded-circle article-img" src="static/elon.jpg"></td> -->
               <td style="width:25%"><img class="rounded-circle article-img" src="{{ post.AmberAlert.picture_url }}"></td>
               
-              <td style="width:15%">
-                <p align="left" class="article-content"><h5>Time Sighted: {{ post.Time }}</h5></p>
-                <p align="left" class="article-content"><h5> Seen: {{ post.time_difference }} ago </h5></p>
+              <td style="width:20%">
+                <p align="left" class="article-content warning"><b>Time Sighted: {{ post.Time }}</b></p>
+
                 <p align="left" class="article-content"><b>Person Missing</b></p>
                 
                 <p align="left" class="article-content">Name: {{ post.AmberAlert.name }} </p>
@@ -28,14 +28,17 @@
                 <p align="left" class="article-content">Weight: {{ post.AmberAlert.weight }} </p>
                 <p align="left" class="article-content">Eye Color: {{ post.AmberAlert.eye_color }} </p>
                 <p align="left" class="article-content">Hair Color: {{ post.AmberAlert.hair_color }} </p>
+              </td>
               
+              <td style="width:20%">
+                <p align="left" class="article-content warning"><b>Seen: {{ post.time_difference }} ago </b></p>
                 <p align="left" class="article-content"><b>Vehicle Information</b></p>
                 <p align="left" class="article-content">Color: {{ post.AmberAlert.vehicle_information.color }} </p>
                 <p align="left" class="article-content">License Plate: {{ post.AmberAlert.vehicle_information.license_plate }} </p>
               </td>
             
             
-              <td style="width:50%">  
+              <td style="width:40%">  
                   <h3>Last Seen</h3>
                   <!--The div element for the map -->
                   

@@ -12,6 +12,11 @@ h5{
   color:red;
 }
 
+.warning{
+  font-size: 110%;
+  color:red;
+}
+
 ul {
   margin: 0;
 }
