@@ -35,6 +35,12 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
     CameraSource mCameraSource;
     MyCountDownTimer myCountDownTimer;
     int progress;
+    Map <String, String> amberEntries = new HashMap<String, String>();
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
     private static final String TAG = "MainActivity";
     private static final int requestPermissionID = 101;
 
@@ -65,8 +74,32 @@ public class MainActivity extends AppCompatActivity {
         lonTextView = findViewById(R.id.lonTextView);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        myCountDownTimer = new MyCountDownTimer(10000, 1000);
-        myCountDownTimer.start();
+        //myCountDownTimer = new MyCountDownTimer(10000, 1000);
+        //myCountDownTimer.start();
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Map<String, Object> map = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("MockAmberAlert");
+                if (map != null) {
+                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        Map<String, Object> vehicle_info = (Map<String, Object>) ((Map<String, Object>) entry.getValue()).get("vehicle_information");
+                        amberEntries.put((String) vehicle_info.get("license_plate"), entry.getKey());
+                    }
+                }
+                Log.d(TAG, amberEntries.toString());
+                Log.d(TAG, "=========");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         getLastLocation();
 
@@ -250,15 +283,30 @@ public class MainActivity extends AppCompatActivity {
                                     TextBlock item = items.valueAt(i);
                                     stringBuilder.append(item.getValue());
                                     stringBuilder.append("\n");
+
+                                    // Show searching toast
                                     Context context = getApplicationContext();
                                     CharSequence text = "Searching...";
                                     int duration = Toast.LENGTH_LONG;
-
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
                                 }
-                                //Log.d("SCAN", stringBuilder.toString());
-                                mTextView.setText(stringBuilder.toString());
+                                // Search through entries for match
+                                String detectedText = stringBuilder.toString();
+                                for (Map.Entry<String, String> entry : amberEntries.entrySet()) {
+                                    String key = entry.getKey();
+                                    if (detectedText.contains(key)) {
+                                        Log.d(TAG, "FOUND: " + key);
+
+                                        // Show found toast
+                                        Context context = getApplicationContext();
+                                        CharSequence text = "Match Found!";
+                                        int duration = Toast.LENGTH_LONG;
+                                        Toast toast = Toast.makeText(context, text, duration);
+                                        toast.show();
+                                    }
+                                }
+                                mTextView.setText(detectedText);
                             }
                         });
                     }
