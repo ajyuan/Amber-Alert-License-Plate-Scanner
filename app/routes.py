@@ -11,6 +11,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
+import sys
+
 
 @app.route('/favicon.ico') 
 def favicon(): 
@@ -57,9 +59,9 @@ def index():
         value['AmberAlert'] = amberAlertDict[amberAlertId]
         amberMatches.append(value)
 
-    print(amberMatches)
+    print(amberMatches, file=sys.stderr)
 
-    return render_template("index.html", title='Home Page', posts=posts)
+    return render_template("index.html", title='Home Page', posts=amberMatches)
 
 
 @app.route('/login', methods=['GET', 'POST'])

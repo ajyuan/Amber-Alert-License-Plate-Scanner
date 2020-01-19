@@ -3,6 +3,8 @@
 {% block content %}
 
     <h1>Recent Sightings</h1>
+  
+
     {% for post in posts %}
     
     <article class="media content-section">
@@ -12,14 +14,14 @@
               <td style="width:20%"><img class="rounded-circle article-img" src="static/elon.jpg"></td>
 
               <td style="width:30%">
-                <p align="left" class="article-content"><b>Name:</b> {{ post.author.name }} </p>
-                <p align="left" class="article-content"><b>Description:</b> {{ post.author.Description }}</p>
-                <p align="left" class="article-content"><b>Age:</b> {{ post.author.Age }} </p>
-                <p align="left" class="article-content"><b>Height:</b> {{ post.author.Height }}</p>
-                <p align="left" class="article-content"><b>Weight:</b> {{ post.author.Weight }} </p>
-                <p align="left" class="article-content"><b>Hair Color:</b> {{ post.author.Hair }}</p>
-                <p align="left" class="article-content"><b>Eye Color:</b> {{ post.author.Eyes }}</p>
-
+                <p align="left" class="article-content"><b>Person Missing</b></p>
+                <p align="left" class="article-content">Time Sighted: {{ post.Time }} </p>
+                <p align="left" class="article-content">Name: {{ post.AmberAlert.name }} </p>
+                <p align="left" class="article-content">Age: {{ post.AmberAlert.age }} </p>
+             
+                <p align="left" class="article-content"><b>Vehicle Information</b></p>
+                <p align="left" class="article-content">Color: {{ post.AmberAlert.vehicle_information.color }} </p>
+                <p align="left" class="article-content">License Plate: {{ post.AmberAlert.vehicle_information.license_plate }} </p>
               </td>
             
             
@@ -27,25 +29,30 @@
                   <h3>Map</h3>
                   <!--The div element for the map -->
                   
-                  <div id="{{ post.author.username }}" style="height: 400px; width: 100%;"></div>
+                  <div id="{{ post.AmberAlert.name }}" style="height: 400px; width: 100%;"></div>
                 </td>  
-               </tr>
-             </table>
-		  </div>
-    </article>
+              </tr>
+            </table>
+		 
+      </article>
     {% endfor %}
 
+    
+    
     <script>
-      var coords = [
-    {lat: 49.18589, lng: -2.19917, zoom: 17},
-    {lat: 36.997174, lng: -122.051465, zoom: 17}
-    ];
-    var names = [
-      "Test",
-      "Susan"
-    ];
-    var markers = [];
-    var maps = [];
+      
+      var coords = [];
+      var names = [];
+      var markers = [];
+      var maps = [];
+      var counter = 0;
+      
+    {% for post in posts %}
+    coords[counter] = {lat:"{{post.Location.Latitude}}", lng:"{{post.Location.Longitude}}"};
+    names[counter] = "{{ post.AmberAlert.name }}";
+    counter = counter + 1;
+    {% endfor %}
+ 
 
     function initMap() {
         for(var i = 0, length = coords.length; i < length; i++)
@@ -54,7 +61,7 @@
             var latlng = new google.maps.LatLng(point.lat, point.lng);
 
             maps[i] = new google.maps.Map(document.getElementById(names[i]), {
-                zoom: point.zoom,
+                zoom: 17,
                 center: latlng
             });
 
@@ -64,7 +71,12 @@
             });
         }
       }
+
     </script>
+
+    
+    
+
 
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIcmKbmiuQGUcjZBzpAMz-2Jtg042QUrk&callback=initMap">
