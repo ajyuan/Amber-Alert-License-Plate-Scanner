@@ -57,11 +57,25 @@ def index():
     for key, value in amberMatchDict.items():
         amberAlertId = value['AmberAlert']
         value['AmberAlert'] = amberAlertDict[amberAlertId]
+        recorded_time = datetime.strptime(value['Time'], '%H:%M %m-%d-%Y')
+        value['time_raw'] = recorded_time
+        diff = datetime.now() - recorded_time
+        value['diff_raw'] = diff
+        value['time_difference'] = strfdelta(diff, "{hours} hours {minutes} minutes")
+
         amberMatches.append(value)
 
+    amberMatches = sorted(amberMatches, key=lambda x: int(strfdelta(x['diff_raw'], "{hours}")), reverse=True)
     #print(amberMatches, file=sys.stderr)
 
     return render_template("index.html", title='Home Page', posts=amberMatches)
+
+
+def strfdelta(tdelta, fmt):
+    d = {"days": tdelta.days}
+    d["hours"], rem = divmod(tdelta.seconds, 3600)
+    d["minutes"], d["seconds"] = divmod(rem, 60)
+    return fmt.format(**d)
 
 @app.route('/about')
 def about():
