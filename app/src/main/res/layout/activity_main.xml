@@ -7,6 +7,30 @@
     android:weightSum="5"
     tools:context="com.tuts.prakash.simpleocr.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:text="Searching for license plates..."/>
+
+    <TextView
+        android:id="@+id/info"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <SurfaceView
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"

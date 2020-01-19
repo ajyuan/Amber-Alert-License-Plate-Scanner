@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     FusedLocationProviderClient mFusedLocationClient;
     SurfaceView mCameraView;
-    TextView mTextView, latTextView, lonTextView;
+    TextView mTextView, latTextView, lonTextView, infoText;
     CameraSource mCameraSource;
     MyCountDownTimer myCountDownTimer;
     int progress;
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         mTextView = findViewById(R.id.text_view);
         latTextView = findViewById(R.id.latTextView);
         lonTextView = findViewById(R.id.lonTextView);
+        infoText = findViewById(R.id.info);
+        infoText.setSelected(true);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         //myCountDownTimer = new MyCountDownTimer(10000, 1000);
@@ -104,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
                         amberEntries.put((String) vehicle_info.get("license_plate"), entry.getKey());
                     }
                 }
+                String scrollingInfo = "";
+                for ( String key : amberEntries.keySet() ) {
+                    scrollingInfo += key + "                    ";
+                }
+                infoText.setText(scrollingInfo);
             }
 
             @Override
