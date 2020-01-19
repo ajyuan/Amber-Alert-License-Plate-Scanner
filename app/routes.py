@@ -57,7 +57,7 @@ def index():
     for key, value in amberMatchDict.items():
         amberAlertId = value['AmberAlert']
         value['AmberAlert'] = amberAlertDict[amberAlertId]
-        recorded_time = datetime.strptime(value['Time'], '%H:%M %m-%d-%Y')
+        recorded_time = datetime.strptime(value['Time'], '%H:%M:%S %m-%d-%Y')
         value['time_raw'] = recorded_time
         diff = datetime.now() - recorded_time
         value['diff_raw'] = diff
