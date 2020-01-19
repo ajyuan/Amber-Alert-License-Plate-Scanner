@@ -1,0 +1,12 @@
+{
+    "name": "John Doe",
+    "age": 19,
+    "hair_color": "HOT Pink",
+    "height": "1'2",
+    "weight": "60 Kg",
+    "eye_color": "blue",
+    "vehicle_information": {
+        "license_plate": "XALDF",
+        "color": "Blue"
+    }
+}
