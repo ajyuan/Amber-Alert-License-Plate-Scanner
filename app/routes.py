@@ -65,7 +65,8 @@ def index():
 
         amberMatches.append(value)
 
-    amberMatches = sorted(amberMatches, key=lambda x: int(strfdelta(x['diff_raw'], "{hours}")), reverse=True)
+    #amberMatches = sorted(amberMatches, key=lambda x: int(strfdelta(x['diff_raw'], "{hours}")), reverse=True)
+    amberMatches = sorted(amberMatches, key=lambda x: (x['diff_raw'] .seconds), reverse=False)
     #print(amberMatches, file=sys.stderr)
 
     return render_template("index.html", title='Home Page', posts=amberMatches)
