@@ -2,27 +2,27 @@
 
 {% block content %}
 <article class="media content-section">
-<head>
-    <style>
-        .center{
-        width: 60%;
-        border: 3px solid #73AD21;
-        padding: 10px;
-        }
-    </style>
-</head>
-    <table>
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
-            <td class=center">
-                <h1>{{ user.username }}</h1>
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-                {% if user == current_user %}
-                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+    <head>
+        <style>
+            .center{
+            width: 60%;
+            border: 3px solid #73AD21;
+            padding: 10px;
+            }
+        </style>
+    </head>
+        <table>
+            <tr valign="top">
+                <td><img src="{{ user.avatar(128) }}"></td>
+                <td class=center">
+                    <h1>{{ user.username }}</h1>
+                    {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+                    {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
+                    {% if user == current_user %}
+                    <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
 </article>
 {% endblock %}
