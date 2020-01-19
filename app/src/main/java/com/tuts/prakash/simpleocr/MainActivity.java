@@ -43,7 +43,11 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,12 +60,15 @@ public class MainActivity extends AppCompatActivity {
     CameraSource mCameraSource;
     MyCountDownTimer myCountDownTimer;
     int progress;
+    Map <String, Object> sightingEntries = new HashMap<>();
     Map <String, String> amberEntries = new HashMap<String, String>();
+    HashSet <String> foundEntries = new HashSet<>();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     private static final String TAG = "MainActivity";
     private static final int requestPermissionID = 101;
+    Map <String, String> locationEntry = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                sightingEntries = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("MockAmberAlert");
                 Map<String, Object> map = (Map<String, Object>) ((Map<String, Object>) dataSnapshot.getValue()).get("MockAmberAlert");
                 if (map != null) {
                     for (Map.Entry<String, Object> entry : map.entrySet()) {
@@ -90,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
                         amberEntries.put((String) vehicle_info.get("license_plate"), entry.getKey());
                     }
                 }
-                Log.d(TAG, amberEntries.toString());
-                Log.d(TAG, "=========");
             }
 
             @Override
@@ -120,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     latTextView.setText(location.getLatitude() + "");
                                     lonTextView.setText(location.getLongitude() + "");
+                                    locationEntry.put("Latitude", String.valueOf(location.getLatitude()));
+                                    locationEntry.put("Longitude", String.valueOf(location.getLongitude()));
+                                    Log.d(TAG, locationEntry.toString());
                                 }
                             }
                         }
@@ -142,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(0);
         mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(1);
+        //mLocationRequest.setNumUpdates(1);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(
@@ -158,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             Location mLastLocation = locationResult.getLastLocation();
             latTextView.setText(mLastLocation.getLatitude() + "");
             lonTextView.setText(mLastLocation.getLongitude() + "");
+            Log.d(TAG, locationEntry.toString());
         }
     };
 
@@ -295,8 +305,10 @@ public class MainActivity extends AppCompatActivity {
                                 String detectedText = stringBuilder.toString();
                                 for (Map.Entry<String, String> entry : amberEntries.entrySet()) {
                                     String key = entry.getKey();
-                                    if (detectedText.contains(key)) {
-                                        Log.d(TAG, "FOUND: " + key);
+                                    // If match found
+                                    if (!foundEntries.contains(key) && detectedText.contains(key)) {
+                                        Log.d(TAG, "ALERT_FOUND: " + key);
+                                        foundEntries.add(key);
 
                                         // Show found toast
                                         Context context = getApplicationContext();
@@ -304,6 +316,27 @@ public class MainActivity extends AppCompatActivity {
                                         int duration = Toast.LENGTH_LONG;
                                         Toast toast = Toast.makeText(context, text, duration);
                                         toast.show();
+
+                                        // Send sighting to Firebase
+                                        // Get sighting time
+                                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss MM-dd-yyyy", Locale.getDefault());
+                                        SimpleDateFormat sdfNoSec = new SimpleDateFormat("HH:mm MM-dd-yyyy", Locale.getDefault());
+                                        String timeKey = sdf.format(new Date());
+                                        String currentDateandTime = sdfNoSec.format(new Date());
+
+
+                                        // Building db entry
+                                        Map <String, Object> sightingEntry = new HashMap<>();
+                                        sightingEntry.put("AmberAlert", amberEntries.get(key));
+                                        sightingEntry.put("Location", locationEntry);
+                                        sightingEntry.put("Time", currentDateandTime);
+                                        sightingEntries.put(timeKey, sightingEntry);
+
+                                        myRef.child("AmberMatch").updateChildren(sightingEntries);
+                                        Log.d(TAG, locationEntry.toString());
+
+                                        // Send sighting via Notivize
+                                        // TODO
                                     }
                                 }
                                 mTextView.setText(detectedText);
