@@ -8,7 +8,9 @@
     "picture_url": "http://api.missingkids.org/photographs/NCMC1379794c1.jpg",
     "vehicle_information": {
         "license_plate": "XALDF",
-        "color": "Blue"
+        "color": "Blue",
+        "car_brand": "Ford",
+        "car_model": "Mustang"
     }
     
 }

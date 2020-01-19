@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+<head>
+    <style>
+        .center{
+        width: 60%;
+        border: 3px solid #73AD21;
+        padding: 10px;
+        }
+    </style>
+</head>
     <table>
         <tr valign="top">
             <td><img src="{{ user.avatar(128) }}"></td>
-            <td>
-                <h1>User: {{ user.username }}</h1>
+            <td class=center">
+                <h1>{{ user.username }}</h1>
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
                 {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
                 {% if user == current_user %}
@@ -15,7 +24,4 @@
         </tr>
     </table>
     <hr>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
 {% endblock %}
