@@ -6,16 +6,17 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06c1f663-8c39-48ae-b63c-0d5440fbacc3" name="Default Changelist" comment="">
+    <list default="true" id="fb80d273-9f9c-4ec6-b643-54ac122da1f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,41 +42,22 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+            <state relative-caret-position="131">
+              <caret line="372" column="92" selection-start-line="372" selection-start-column="92" selection-end-line="372" selection-end-column="92" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2395#2411#0" expanded="true" />
-                <element signature="e#4553#5202#0" expanded="true" />
-                <element signature="e#5201#5202#0" expanded="true" />
-                <element signature="e#6316#6893#0" expanded="true" />
-                <element signature="e#6892#6893#0" expanded="true" />
-                <element signature="e#10930#10931#0" expanded="true" />
-                <element signature="e#10990#10991#0" expanded="true" />
-                <element signature="e#11716#14935#0" expanded="true" />
-                <element signature="e#14934#14935#0" expanded="true" />
+                <element signature="e#2998#3014#0" expanded="true" />
+                <element signature="e#5992#6931#0" expanded="true" />
+                <element signature="e#6930#6931#0" expanded="true" />
+                <element signature="e#7929#8313#0" expanded="true" />
+                <element signature="e#8312#8313#0" expanded="true" />
+                <element signature="e#12351#12352#0" expanded="true" />
+                <element signature="e#12411#12412#0" expanded="true" />
+                <element signature="e#13137#20984#0" expanded="true" />
+                <element signature="e#20983#20984#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,6 +88,8 @@
       <find>location</find>
       <find>updateC</find>
       <find>value</find>
+      <find>found</find>
+      <find>sending m</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,9 +119,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -156,14 +138,12 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="simpleocr" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SlugAlert" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -270,7 +250,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.26979867" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14496644" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -311,13 +291,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="235" selection-start-line="235" selection-end-line="235" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" />
     <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -346,28 +320,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/Sighting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/Sighting.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tuts/prakash/simpleocr/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+        <state relative-caret-position="131">
+          <caret line="372" column="92" selection-start-line="372" selection-start-column="92" selection-end-line="372" selection-end-column="92" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2395#2411#0" expanded="true" />
-            <element signature="e#4553#5202#0" expanded="true" />
-            <element signature="e#5201#5202#0" expanded="true" />
-            <element signature="e#6316#6893#0" expanded="true" />
-            <element signature="e#6892#6893#0" expanded="true" />
-            <element signature="e#10930#10931#0" expanded="true" />
-            <element signature="e#10990#10991#0" expanded="true" />
-            <element signature="e#11716#14935#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
+            <element signature="e#2998#3014#0" expanded="true" />
+            <element signature="e#5992#6931#0" expanded="true" />
+            <element signature="e#6930#6931#0" expanded="true" />
+            <element signature="e#7929#8313#0" expanded="true" />
+            <element signature="e#8312#8313#0" expanded="true" />
+            <element signature="e#12351#12352#0" expanded="true" />
+            <element signature="e#12411#12412#0" expanded="true" />
+            <element signature="e#13137#20984#0" expanded="true" />
+            <element signature="e#20983#20984#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -25,6 +25,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -43,7 +53,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -254,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
             /**
              * Add call back to SurfaceView and check if camera permission is granted.
              * If permission is granted we can start our cameraSource and pass it to surfaceView
-            */
+             */
             mCameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
                 @Override
                 public void surfaceCreated(SurfaceHolder holder) {
@@ -315,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (Map.Entry<String, String> entry : amberEntries.entrySet()) {
                                     String key = entry.getKey();
                                     // If match found
-                                    if (!foundEntries.contains(key) && detectedText.contains(key)) {
+                                    if (detectedText.contains(key)) {
                                         Log.d(TAG, "ALERT_FOUND: " + key);
                                         foundEntries.add(key);
 
@@ -345,10 +359,64 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d(TAG, locationEntry.toString());
 
                                         // Send sighting via Notivize
-                                        // TODO
                                         if (detectedText.contains(key)) {
                                             Log.d(TAG, "FOUND: " + key);
                                             match = true;
+                                        }
+
+                                        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                                        // Request a string response from the provided URL.
+                                        try {
+                                            RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+                                            String URL = "https://events-api.notivize.com/applications/afb03cdb-854d-4056-834b-b1974b7bdbf7/event_flows/365dd972-7eb4-4a7b-b8a0-a02113f5f98a/events";
+                                            JSONObject jsonBody = new JSONObject();
+                                            jsonBody.put( "police_email", "austinyuan2@gmail.com");
+                                            jsonBody.put("latitude", locationEntry.get("Latitude"));
+                                            jsonBody.put("longitude", locationEntry.get("Longitude"));
+                                            jsonBody.put("time", currentDateandTime);
+                                            jsonBody.put("license_plate", key);
+                                            final String requestBody = jsonBody.toString();
+
+                                            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    Log.i("VOLLEY", response);
+                                                }
+                                            }, new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.e("VOLLEY", error.toString());
+                                                }
+                                            }) {
+                                                @Override
+                                                public String getBodyContentType() {
+                                                    return "application/json; charset=utf-8";
+                                                }
+
+                                                @Override
+                                                public byte[] getBody() throws AuthFailureError {
+                                                    try {
+                                                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                                                    } catch (UnsupportedEncodingException uee) {
+                                                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                                        return null;
+                                                    }
+                                                }
+
+                                                @Override
+                                                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                                                    String responseString = "";
+                                                    if (response != null) {
+                                                        responseString = String.valueOf(response.statusCode);
+                                                        Log.d(TAG, "Sending msg...\n" + responseString + "\n...Sent!");
+                                                    }
+                                                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+                                                }
+                                            };
+
+                                            requestQueue.add(stringRequest);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
                                     }
                                     mTextView.setText(detectedText);
