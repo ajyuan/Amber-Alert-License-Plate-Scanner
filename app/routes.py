@@ -63,6 +63,10 @@ def index():
 
     return render_template("index.html", title='Home Page', posts=amberMatches)
 
+@app.route('/about')
+def about():
+    return render_template("about.html", title='About Page')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

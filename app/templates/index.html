@@ -7,7 +7,7 @@
 
     {% for post in posts %}
     
-    <article class="media content-section">
+      <article class="media content-section">
 
           <table class="media-body">
             <tr>
@@ -31,19 +31,18 @@
             
             
               <td style="width:50%">  
-                  <h3>Map</h3>
+                  <h3>Last Seen</h3>
                   <!--The div element for the map -->
                   
                   <div id="{{ post.AmberAlert.name }}" style="height: 400px; width: 100%;"></div>
               </td>  
             </tr>
 
-            </table>
+          </table>
 		 
       </article>
     {% endfor %}
 
-    
     
     <script>
       
@@ -53,36 +52,32 @@
       var maps = [];
       var counter = 0;
       
-    {% for post in posts %}
-    coords[counter] = {lat:"{{post.Location.Latitude}}", lng:"{{post.Location.Longitude}}"};
-    names[counter] = "{{ post.AmberAlert.name }}";
-    counter = counter + 1;
-    {% endfor %}
- 
+      {% for post in posts %}
+        coords[counter] = {lat:"{{post.Location.Latitude}}", lng:"{{post.Location.Longitude}}"};
+        names[counter] = "{{ post.AmberAlert.name }}";
+        counter = counter + 1;
+      {% endfor %}
+  
 
-    function initMap() {
-        for(var i = 0, length = coords.length; i < length; i++)
-        {
-            var point = coords[i];
-            var latlng = new google.maps.LatLng(point.lat, point.lng);
+      function initMap() {
+          for(var i = 0, length = coords.length; i < length; i++)
+          {
+              var point = coords[i];
+              var latlng = new google.maps.LatLng(point.lat, point.lng);
 
-            maps[i] = new google.maps.Map(document.getElementById(names[i]), {
-                zoom: 17,
-                center: latlng
-            });
+              maps[i] = new google.maps.Map(document.getElementById(names[i]), {
+                  zoom: 17,
+                  center: latlng
+              });
 
-            markers[i] = new google.maps.Marker({
-                position: latlng,
-                map: maps[i]
-            });
+              markers[i] = new google.maps.Marker({
+                  position: latlng,
+                  map: maps[i]
+              });
+          }
         }
-      }
 
     </script>
-
-    
-    
-
 
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIcmKbmiuQGUcjZBzpAMz-2Jtg042QUrk&callback=initMap">
