@@ -11,6 +11,6 @@ Built in 3 days for CruzHacks 2020. Received award for "Best Use of Google Cloud
 * Mobile Vision for license plate recognition
 * Firebase for data storage
 * Java & Android Studio for app development
-* HTML, Python, & Flask for dashboard development
+* HTML/CSS/JS & Python for dashboard development
 
 [Devpost](https://devpost.com/software/amber-dash)
