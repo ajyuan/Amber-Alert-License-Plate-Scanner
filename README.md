@@ -10,6 +10,7 @@ Built in 3 days for CruzHacks 2020. Received award for "Best Use of Google Cloud
 ## Technologies Used
 * Mobile Vision for license plate recognition
 * Firebase for data storage
+* Notivize for pushing email notifications to police departments
 * Java & Android Studio for app development
 * HTML/CSS/JS & Python for dashboard development
 
