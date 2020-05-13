@@ -1,5 +1,6 @@
 # AmberDash
 ![Mobile_Img](https://github.com/TheEducatedPickle/Amber-Alert-License-Plate-Scanner/blob/master/sample_images/gallery.jpg?raw=true)
+<br />
 *This is the mobile app branch. To see the dashboard, navigate to the website branch*
 <br/>
 <br/>
